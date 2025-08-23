@@ -131,3 +131,54 @@ Implemented a **finite-difference gradient check**:
 pip install tensorflow matplotlib numpy
 
 ```
+
+### 2. Run training
+
+```bash
+
+python main.py
+
+```
+This will:
+- Train the MLP with all optimizers × schedulers
+- Save training logs to training_log.txt  
+- Save plots (training_history_*.png, lr_schedule_*.png)
+
+### Example output
+
+```text
+
+--- Training with Optimizer: AdamW, Scheduler: CosineDecay ---
+Epoch 1 | Loss: 0.25 | Accuracy: 93.1%
+...
+Epoch 10 | Loss: 0.05 | Accuracy: 98.1%
+
+```
+
+---
+
+##📚 Learning Objectives
+- Understand matrix calculus for backpropagation
+- Implement optimizers and schedulers from scratch
+- Compare their convergence behaviors
+- Appreciate the role of weight decay in AdamW
+
+---
+
+## 🔄 Training Pipeline
+
+```mermaid
+flowchart LR
+    A[📂 Dataset (MNIST/Fashion-MNIST)] --> B[🧠 Model (MLP: 784→256→10)]
+    B --> C[📉 Loss (Softmax + Cross-Entropy)]
+    C --> D[⚙️ Optimizer (SGD, Momentum, RMSProp, Adam, AdamW)]
+    D --> E[📈 Scheduler (Constant, Step, Cosine, Warmup)]
+    E --> F[✅ Updated Weights]
+    F --> B
+```
+
+That produces a nice flowchart where:  
+- Data goes into the model  
+- Model computes loss  
+- Optimizer + scheduler update weights  
+- Cycle repeats  
