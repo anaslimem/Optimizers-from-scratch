@@ -157,7 +157,7 @@ Epoch 10 | Loss: 0.05 | Accuracy: 98.1%
 
 ---
 
-##📚 Learning Objectives
+## 📚 Learning Objectives
 - Understand matrix calculus for backpropagation
 - Implement optimizers and schedulers from scratch
 - Compare their convergence behaviors
