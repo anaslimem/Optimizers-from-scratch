@@ -1,11 +1,11 @@
 import sys
+import os
 import tensorflow as tf
 from model import MLP
 from optimizers import SGD, Momentum, RMSProp, Adam, AdamW
 from schedulers import ConstantLR, StepDecay, CosineDecay, WarmupLR
 from train import train
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Redirect stdout to a file to capture all training output
 f = open("training_log.txt", "w")
@@ -35,6 +35,9 @@ schedulers = {
 results = {}
 
 for opt_name, optimizer in optimizers.items():
+    # Create a folder for each optimizer
+    os.makedirs(opt_name, exist_ok=True)
+
     for sched_name, scheduler in schedulers.items():
         print(f"\n--- Training with Optimizer: {opt_name}, Scheduler: {sched_name} ---")
         model = MLP()
@@ -48,7 +51,7 @@ for opt_name, optimizer in optimizers.items():
         plt.title(f"LR Schedule for {opt_name} with {sched_name}")
         plt.xlabel("Epoch")
         plt.ylabel("Learning Rate")
-        plt.savefig(f"lr_schedule_{opt_name}_{sched_name}.png")
+        plt.savefig(os.path.join(opt_name, f"lr_schedule_{sched_name}.png"))
         plt.close()
 
         # Plotting loss and accuracy
@@ -59,11 +62,10 @@ for opt_name, optimizer in optimizers.items():
         plt.xlabel("Epoch")
         plt.ylabel("Value")
         plt.legend()
-        plt.savefig(f"training_history_{opt_name}_{sched_name}.png")
+        plt.savefig(os.path.join(opt_name, f"training_history_{sched_name}.png"))
         plt.close()
 
 sys.stdout.close()
 sys.stdout = sys.__stdout__
 
-print("Training and plotting complete. Check the generated PNG files and training_log.txt.")
-
+print("Training and plotting complete. Check the optimizer folders and training_log.txt.")

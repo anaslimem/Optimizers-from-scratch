@@ -105,9 +105,9 @@ $$
 - **Constant LR**  
 - **Step Decay**:  
 
-  $$
-  \eta \cdot \gamma^{\lfloor \tfrac{\text{epoch}}{k} \rfloor}
-  $$
+$$
+\eta \cdot \gamma^{\lfloor \tfrac{\text{epoch}}{k} \rfloor}
+$$
 
 - **Cosine Decay**: smooth annealing to zero  
 - **Warmup**: gradually increase LR for first few epochs
