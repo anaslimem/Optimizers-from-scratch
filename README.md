@@ -163,22 +163,4 @@ Epoch 10 | Loss: 0.05 | Accuracy: 98.1%
 - Compare their convergence behaviors
 - Appreciate the role of weight decay in AdamW
 
----
 
-## 🔄 Training Pipeline
-
-```mermaid
-flowchart LR
-    B [🧠 Model (MLP: 784→256→10)]
-    B --> C[📉 Loss (Softmax + Cross-Entropy)]
-    C --> D[⚙️ Optimizer (SGD, Momentum, RMSProp, Adam, AdamW)]
-    D --> E[📈 Scheduler (Constant, Step, Cosine, Warmup)]
-    E --> F[✅ Updated Weights]
-    F --> B
-```
-
-That produces a nice flowchart where:  
-- Data goes into the model  
-- Model computes loss  
-- Optimizer + scheduler update weights  
-- Cycle repeats  
