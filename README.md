@@ -58,34 +58,41 @@ $$
 ### Optimizers
 
 **SGD**  
+
 $$
 W \leftarrow W - \eta \nabla_W
 $$
 
 **Momentum**  
+
 $$
 v \leftarrow \beta v + (1-\beta)\nabla_W, \quad 
 W \leftarrow W - \eta v
 $$
 
 **RMSProp**  
+
 $$
 s \leftarrow \rho s + (1-\rho)\nabla_W^2, \quad 
 W \leftarrow W - \eta \frac{\nabla_W}{\sqrt{s}+\epsilon}
 $$
 
 **Adam**  
+
 $$
 m \leftarrow \beta_1 m + (1-\beta_1)\nabla_W
 $$
+
 $$
 v \leftarrow \beta_2 v + (1-\beta_2)\nabla_W^2
 $$
+
 $$
 W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}}+\epsilon}
 $$
 
 **AdamW (decoupled weight decay)**  
+
 $$
 W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}}+\epsilon} - \eta \lambda W
 $$  
@@ -97,12 +104,13 @@ $$
 ### Learning Rate Schedulers
 - **Constant LR**  
 - **Step Decay**:  
+
   $$
   \eta \cdot \gamma^{\lfloor \tfrac{\text{epoch}}{k} \rfloor}
   $$
+
 - **Cosine Decay**: smooth annealing to zero  
 - **Warmup**: gradually increase LR for first few epochs
-
 
 ---
 
