@@ -15,83 +15,94 @@ The challenge is to implement everything from scratch:
 
 ---
 
-## 🧮 Key Mathematics
+## 🧮 Mathematics
 
 ### Softmax + Cross-Entropy
-Given logits `z ∈ R^10` and one-hot label `y`:
-\[
+Given logits $z \in \mathbb{R}^{10}$ and one-hot label $y$:
+
+$$
 \text{softmax}(z)_i = \frac{e^{z_i}}{\sum_j e^{z_j}}
-\]
+$$
 
 Loss:
-\[
+
+$$
 L = - \sum_i y_i \log \text{softmax}(z)_i
-\]
+$$
 
 Gradient wrt logits:
-\[
+
+$$
 \nabla_z L = \text{softmax}(z) - y
-\]
+$$
 
 ---
 
 ### Backprop for Linear Layer
-For input `x ∈ R^{batch × d_in}`, weights `W ∈ R^{d_in × d_out}`, bias `b ∈ R^{d_out}`:
+For input $x \in \mathbb{R}^{\text{batch} \times d_{in}}$,  
+weights $W \in \mathbb{R}^{d_{in} \times d_{out}}$, bias $b \in \mathbb{R}^{d_{out}}$:
 
-\[
+$$
 z = xW + b
-\]
+$$
 
 Gradients:
-\[
-\nabla_W L = x^T \nabla_z L, \quad
+
+$$
+\nabla_W L = x^T \nabla_z L, \quad 
 \nabla_b L = \sum \nabla_z L
-\]
+$$
 
 ---
 
 ### Optimizers
-- **SGD**:  
-  \[
-  W \leftarrow W - \eta \nabla_W
-  \]
 
-- **Momentum**:  
-  \[
-  v \leftarrow \beta v + (1-\beta)\nabla_W, \quad
-  W \leftarrow W - \eta v
-  \]
+**SGD**  
+$$
+W \leftarrow W - \eta \nabla_W
+$$
 
-- **RMSProp**:  
-  \[
-  s \leftarrow \rho s + (1-\rho)\nabla_W^2, \quad
-  W \leftarrow W - \eta \frac{\nabla_W}{\sqrt{s}+\epsilon}
-  \]
+**Momentum**  
+$$
+v \leftarrow \beta v + (1-\beta)\nabla_W, \quad 
+W \leftarrow W - \eta v
+$$
 
-- **Adam**:  
-  \[
-  m \leftarrow \beta_1 m + (1-\beta_1)\nabla_W
-  \]  
-  \[
-  v \leftarrow \beta_2 v + (1-\beta_2)\nabla_W^2
-  \]  
-  \[
-  W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}}+\epsilon}
-  \]
+**RMSProp**  
+$$
+s \leftarrow \rho s + (1-\rho)\nabla_W^2, \quad 
+W \leftarrow W - \eta \frac{\nabla_W}{\sqrt{s}+\epsilon}
+$$
 
-- **AdamW** (decoupled weight decay):  
-  \[
-  W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}}+\epsilon} - \eta \lambda W
-  \]  
-  ✅ Unlike Adam with L2, the decay is applied **outside** the momentum updates.
+**Adam**  
+$$
+m \leftarrow \beta_1 m + (1-\beta_1)\nabla_W
+$$
+$$
+v \leftarrow \beta_2 v + (1-\beta_2)\nabla_W^2
+$$
+$$
+W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}}+\epsilon}
+$$
+
+**AdamW (decoupled weight decay)**  
+$$
+W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}}+\epsilon} - \eta \lambda W
+$$  
+
+✅ Unlike Adam with L2 regularization, the decay is applied **outside** the momentum updates.
 
 ---
 
 ### Learning Rate Schedulers
 - **Constant LR**  
-- **Step Decay**: \(\eta \cdot \gamma^{\lfloor epoch / k \rfloor}\)  
+- **Step Decay**:  
+  $$
+  \eta \cdot \gamma^{\lfloor \tfrac{\text{epoch}}{k} \rfloor}
+  $$
 - **Cosine Decay**: smooth annealing to zero  
-- **Warmup**: gradually increase LR for first few epochs  
+- **Warmup**: gradually increase LR for first few epochs
+
 
 ---
 
