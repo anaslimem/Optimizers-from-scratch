@@ -129,7 +129,7 @@ $$
 
 Example training curves:
 
-![Training History Example](training_history_AdamW_CosineDecay.png)
+![Training History Example](AdamW/training_history_CosineDecay.png)
 
 ---
 
