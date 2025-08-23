@@ -169,7 +169,7 @@ Epoch 10 | Loss: 0.05 | Accuracy: 98.1%
 
 ```mermaid
 flowchart LR
-    A[📂 Dataset (MNIST/Fashion-MNIST)] --> B[🧠 Model (MLP: 784→256→10)]
+    B [🧠 Model (MLP: 784→256→10)]
     B --> C[📉 Loss (Softmax + Cross-Entropy)]
     C --> D[⚙️ Optimizer (SGD, Momentum, RMSProp, Adam, AdamW)]
     D --> E[📈 Scheduler (Constant, Step, Cosine, Warmup)]
