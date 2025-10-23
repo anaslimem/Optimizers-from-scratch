@@ -1,11 +1,11 @@
-# Optimizers-from-Scratch 🚀
+# Optimizers-from-Scratch 
 
-This project implements **training a tiny MLP on MNIST without using autograd**, with manual forward/backward propagation, multiple optimizers, and learning rate schedules.  
+This project implements **training a tiny MLP without using autograd**, with manual forward/backward propagation, multiple optimizers, and learning rate schedules.  
 The goal is both educational (understanding matrix calculus + optimization) and practical (reaching ≥97% test accuracy on MNIST).  
 
 ---
 
-## 📌 Problem Statement
+##  Problem Statement
 We want to train a **2-layer MLP** on MNIST (or Fashion-MNIST) by manually coding backpropagation and optimization algorithms.  
 The challenge is to implement everything from scratch:
 - Forward and backward passes with matrix calculus
@@ -15,7 +15,7 @@ The challenge is to implement everything from scratch:
 
 ---
 
-## 🧮 Mathematics
+##  Mathematics
 
 ### Softmax + Cross-Entropy
 Given logits $z \in \mathbb{R}^{10}$ and one-hot label $y$:
@@ -97,7 +97,7 @@ $$
 W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}}+\epsilon} - \eta \lambda W
 $$  
 
-✅ Unlike Adam with L2 regularization, the decay is applied **outside** the momentum updates.
+ Unlike Adam with L2 regularization, the decay is applied **outside** the momentum updates.
 
 ---
 
@@ -114,14 +114,14 @@ $$
 
 ---
 
-## 🏗 Model Architecture
+## Model Architecture
 - **Input**: 784 (flattened MNIST 28×28 image)  
 - **Hidden Layer**: 256 units, ReLU activation  
 - **Output Layer**: 10 classes, softmax  
 
 ---
 
-## 📊 Results
+## Results
 - Achieved **≥97% test accuracy** with AdamW + cosine decay  
 - Plotted:
   - Loss & accuracy curves
@@ -133,7 +133,7 @@ Example training curves:
 
 ---
 
-## 🧪 Unit Tests
+## Unit Tests
 Implemented a **finite-difference gradient check**:  
 - Construct a random tiny MLP  
 - Compare analytical backprop gradients with numerical finite differences  
@@ -141,7 +141,7 @@ Implemented a **finite-difference gradient check**:
 
 ---
 
-## ⚙️ How to Run
+## How to Run
 
 ### 1. Install dependencies
 
@@ -176,7 +176,7 @@ Epoch 10 | Loss: 0.05 | Accuracy: 98.1%
 
 ---
 
-## 📚 Learning Objectives
+## Learning Objectives
 - Understand matrix calculus for backpropagation
 - Implement optimizers and schedulers from scratch
 - Compare their convergence behaviors
