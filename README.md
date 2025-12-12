@@ -6,7 +6,7 @@ The goal is both educational (understanding matrix calculus + optimization) and 
 ---
 
 ##  Problem Statement
-We want to train a **2-layer MLP** on MNIST (or Fashion-MNIST) by manually coding backpropagation and optimization algorithms.  
+We want to train a **2-layer MLP** on MNIST by manually coding backpropagation and optimization algorithms.  
 The challenge is to implement everything from scratch:
 - Forward and backward passes with matrix calculus
 - Optimizers: SGD, Momentum, RMSProp, Adam, AdamW
